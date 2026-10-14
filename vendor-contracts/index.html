@@ -1,0 +1,369 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Contract clauses hospitals already use with lab vendors, plus the few AI needs, each linked to where it already exists.">
+<title>Feed It to the Beast: Procurement</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,400;0,600;0,800;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* A procurement checklist: clauses grouped by theme, each with the place it already exists. Same palette as the Lab Rules Map, so the two read as a pair. */
+:root{
+  --paper:#F3F5F2; --sheet:#FFFFFF; --ink:#16201C; --muted:#56645E; --rule:#D3DBD5; --rule-strong:#9AA8A1;
+  --lab:#1E6A4C; --other:#4F63A0; --prop:#B3261E; --prop-soft:#F8E6E3; --hover:#E7ECE8; --focus:#1E6A4C;
+  --f-body:"Public Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#111715; --sheet:#18201D; --ink:#E6ECE8; --muted:#9AA9A2; --rule:#2C3733; --rule-strong:#55635D;
+  --lab:#3FA67C; --other:#8FA0C8; --prop:#F07468; --prop-soft:#3A1F1C; --hover:#222C28; --focus:#3FA67C; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#111715; --sheet:#18201D; --ink:#E6ECE8; --muted:#9AA9A2; --rule:#2C3733; --rule-strong:#55635D;
+  --lab:#3FA67C; --other:#8FA0C8; --prop:#F07468; --prop-soft:#3A1F1C; --hover:#222C28; --focus:#3FA67C; color-scheme:dark}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.55}
+.wrap{max-width:1080px;margin:0 auto;padding:28px 16px 64px;display:flex;flex-direction:column;gap:40px}
+a{color:inherit;text-underline-offset:2px}
+a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+.eyebrow{font-family:var(--f-mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+header{display:flex;flex-direction:column;gap:14px;max-width:780px}
+h1{font-size:clamp(30px,5.2vw,52px);line-height:1.04;font-weight:800;letter-spacing:-.02em;margin:0;text-wrap:balance}
+.subtitle{font-size:clamp(20px,2.6vw,26px);font-style:italic;font-weight:600;margin:-6px 0 0;color:var(--muted)}
+.dek{font-size:18px;margin:0;max-width:62ch;text-wrap:pretty}
+.byline{font-size:13px;color:var(--muted);margin:0}
+h2{font-size:20px;font-weight:800;margin:0 0 4px;letter-spacing:-.01em}
+h3{font-size:16px;font-weight:800;margin:0}
+section{display:flex;flex-direction:column;gap:14px;min-width:0}
+.note{color:var(--muted);margin:0;max-width:70ch}
+
+.tally{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.tile{background:var(--sheet);border:1px solid var(--rule);padding:14px 16px;display:flex;flex-direction:column;gap:4px;border-top:4px solid var(--c)}
+.tile .n{font-size:34px;font-weight:800;line-height:1;font-variant-numeric:tabular-nums}
+.tile .l{font-size:13px;color:var(--muted)}
+
+.finds{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.find{background:var(--sheet);border:1px solid var(--rule);padding:14px 16px}
+.find p{margin:6px 0 0}
+.find .src{font-size:12.5px;color:var(--muted);margin-top:8px}
+
+.controls{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.chip{font:inherit;font-size:13px;padding:6px 12px;border:1px solid var(--rule-strong);background:var(--sheet);color:var(--ink);cursor:pointer;border-radius:999px;display:inline-flex;gap:8px;align-items:center}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.dot{width:10px;height:10px;border-radius:50%;background:var(--c);flex:none}
+.dot.prop{background:transparent;border:2px solid var(--prop)}
+input[type=search]{font:inherit;font-size:14px;padding:7px 12px;border:1px solid var(--rule-strong);background:var(--sheet);color:var(--ink);min-width:0;flex:1 1 200px;max-width:320px}
+
+.theme{display:flex;flex-direction:column;gap:0;background:var(--sheet);border:1px solid var(--rule)}
+.theme > h3{padding:12px 16px;border-bottom:1px solid var(--rule-strong);font-family:var(--f-mono);font-size:12.5px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.25fr);gap:18px;padding:14px 16px;border-bottom:1px solid var(--rule)}
+.row:last-child{border-bottom:0}
+.row .head{display:flex;flex-direction:column;gap:6px}
+.badge{align-self:flex-start;font-family:var(--f-mono);font-size:11px;letter-spacing:.04em;text-transform:uppercase;padding:2px 8px;border:1px solid var(--c);color:var(--c);display:inline-flex;gap:6px;align-items:center}
+.badge.proposed{background:var(--prop-soft)}
+.row .name{font-weight:800;font-size:15.5px}
+.row .text{margin:0}
+.ev{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px;font-size:14px}
+.ev li{padding-left:12px;border-left:2px solid var(--rule-strong)}
+.ev .who{font-size:12.5px;color:var(--muted);display:block}
+.ev .contrast{border-left-color:var(--prop)}
+.ev .empty{color:var(--muted);font-style:italic;border-left-style:dashed}
+.sec{font-family:var(--f-mono);font-size:10.5px;border:1px solid var(--rule-strong);padding:0 4px;margin-left:4px;color:var(--muted)}
+.none{padding:16px;color:var(--muted)}
+
+.prose p{margin:0 0 10px;max-width:72ch}
+.prose ul{margin:0;padding-left:18px;max-width:72ch}
+.prose li{margin-bottom:6px}
+footer{font-size:13px;color:var(--muted);border-top:1px solid var(--rule);padding-top:16px}
+
+@media (max-width:720px){
+  .row{grid-template-columns:1fr;gap:10px}
+  .tally{grid-template-columns:1fr}
+  .finds{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <span class="eyebrow">Reference · v1 · Oct 14, 2026</span>
+  <h1>Feed It to the Beast: Procurement</h1>
+  <p class="subtitle">Enterprise AI procurement the way labs already survive(ish) it</p>
+  <p class="dek">Hospitals already write vendor terms that pin reagent lots, withhold payment until validation passes, and require a written failure report within 24 hours. Here are those clauses, plus the few AI needs that labs never did, each linked to where it already exists.</p>
+  <p class="byline">Lindsay · <a href="https://inthewandering.substack.com">In the Wandering</a> · Companion to the <a href="https://lindsayguvenc-coder.github.io/lab-rules-map/">Lab Rules Map</a></p>
+</header>
+
+<section aria-labelledby="tally-h">
+  <h2 id="tally-h">Where each clause already exists</h2>
+  <div class="tally" id="tally"></div>
+  <p class="note">"Proposed" means we didn't find it in any contract or rule we checked. It's a gap, not an invention: labs never needed it because CLIA and CAP inspect the lab. Nothing inspects AI.</p>
+</section>
+
+<section aria-labelledby="finds-h">
+  <h2 id="finds-h">Four things worth knowing first</h2>
+  <div class="finds">
+    <div class="find"><h3>Law already writes some of these clauses</h3><p>Hospitals that regularly use an outside blood supplier must have an agreement requiring notice within 3 calendar days when a donor's earlier blood turns out to carry risk. Nuclear procurement documents must state, when applicable, that the defect-reporting rule applies.</p><div class="src"><a href="https://www.ecfr.gov/current/title-42/chapter-IV/subchapter-G/part-482/subpart-C/section-482.27">42 CFR 482.27</a> · <a href="https://www.ecfr.gov/current/title-10/chapter-I/part-21">10 CFR Part 21</a></div></div>
+    <div class="find"><h3>The federal government already asks this for itself</h3><p>Agency AI contracts must require notice of new AI features, no training on agency data without consent, data and model portability, and ongoing testing.</p><div class="src">OMB M-25-22 (2025), via <a href="https://www.pilieromazza.com/omb-issues-memoranda-on-use-and-acquisition-of-ai-by-federal-agencies-part-2-what-it-means-for-government-contractors/">PilieroMazza</a> <span class="sec">secondary</span></div></div>
+    <div class="find"><h3>Aerospace shares failures across the industry</h3><p>Contractors report serious defects to a shared registry and check it before using parts. Commercial products are carved out, which is exactly where off-the-shelf AI sits.</p><div class="src"><a href="https://www.acquisition.gov/far/52.246-26">FAR 52.246-26</a></div></div>
+    <div class="find"><h3>A real clinical AI purchase</h3><p>In one county's AI scribe add-on, a price change gets 90 days' notice. A model change gets none.</p><div class="src"><a href="https://docs.clackamas.us/documents/drupal/05757e6a-3624-435e-997a-1b540c0915d3">Clackamas County / OCHIN, DAX Copilot SOW</a></div></div>
+  </div>
+</section>
+
+<section aria-labelledby="list-h">
+  <h2 id="list-h">The clauses</h2>
+  <p class="note">Start from the lab vendor terms a hospital already writes. Swap "reagent lot" for "model version." Add the rest.</p>
+  <div class="controls" role="group" aria-label="Filter clauses">
+    <button class="chip" data-f="all" aria-pressed="true">All</button>
+    <button class="chip" data-f="lab" aria-pressed="false" style="--c:var(--lab)"><span class="dot"></span>In hospital purchasing now</button>
+    <button class="chip" data-f="other" aria-pressed="false" style="--c:var(--other)"><span class="dot"></span>In another field's rules</button>
+    <button class="chip" data-f="proposed" aria-pressed="false"><span class="dot prop"></span>Proposed</button>
+    <input type="search" id="q" placeholder="Search clauses or sources" aria-label="Search clauses or sources">
+  </div>
+  <div id="list" style="display:flex;flex-direction:column;gap:16px"></div>
+</section>
+
+<section aria-labelledby="how-h" class="prose">
+  <h2 id="how-h">How this was built</h2>
+  <p>The base is a real hospital lab purchase: a VA chemistry analyzer statement of work that bundles instruments, reagents, quality control, middleware and service. Its clauses were mapped to their AI equivalents. Then the same question went to a blood supplier contract, a county's AI scribe purchase, aerospace supplier clauses, and the rules that govern vendors in banking, the power grid, nuclear, pharma, chemical plants and the drug supply chain.</p>
+  <p>Each clause links to the document it came from. Status is strict. A clause is "in hospital purchasing now" only if a hospital contract, solicitation work statement or hospital policy we read contains it. The VA source is a solicitation's statement of work: terms that become contract terms on award. Lines marked "contrast" show where a document we read falls short. A source tagged <span class="sec">secondary</span> is a summary, not the primary text.</p>
+  <p>This is a starting list for a procurement team, not legal advice and not a model contract.</p>
+  <p><strong>Disclosure:</strong> this was researched and checked with Claude, an AI model made by Anthropic. Anthropic sells AI and is a signatory to the Sept 29, 2026 White House Accord. The framing is mine. Every clause links to its source so you can check it without trusting the tool or me.</p>
+</section>
+
+<section aria-labelledby="open-h" class="prose">
+  <h2 id="open-h">Not settled yet</h2>
+  <ul>
+    <li>The accreditation standard that sets how often blood supplier contracts are reviewed. Hospital policies show annual review; the exact AABB or CAP standard isn't confirmed here.</li>
+    <li>OMB M-25-22 is cited from a law firm summary. The primary memo should replace it.</li>
+    <li>The VA ambient scribe solicitation's draft work statement hasn't been read; its FedRAMP requirement is cited from a summary. It may hold more AI-specific terms.</li>
+    <li>Washington State's April 2025 AI contract clauses haven't been reviewed yet.</li>
+  </ul>
+</section>
+
+<section aria-labelledby="ver-h" class="prose">
+  <h2 id="ver-h">Versions</h2>
+  <ul><li>v1 · Oct 14, 2026 · First public version.</li></ul>
+</section>
+
+<footer>Corrections are welcome and will be logged by version. Statements of law and contract terms are paraphrased summaries for comparison.</footer>
+</div>
+
+<script>
+// status: lab = already in a hospital/lab vendor contract we checked; other = in another regime's law, rules or contracts; proposed = not found in anything checked
+const S = {
+  va: {label:"VA chemistry analyzer solicitation SOW (Boise VAMC, 2024)", url:"https://sam.gov/opp/736585f483c34f9bb737d7a74434015b/view", note:"Attachment \"2024 Chemistry SOW.docx\", notice 36C26025Q0170"},
+  rivco: {label:"Riverside County / LifeStream Blood Bank agreement (2025–2029)", url:"https://media.rivcocob.org/proceeds/2024/p2024_12_17_files/15.02001.pdf"},
+  cfr48227: {label:"42 CFR 482.27 (hospital blood supplier agreements)", url:"https://www.ecfr.gov/current/title-42/chapter-IV/subchapter-G/part-482/subpart-C/section-482.27"},
+  gulf: {label:"Gulf Coast Regional Blood Center, emergency services guide", url:"https://umbraco.giveblood.org/media/784242/emergency-services-guide.pdf"},
+  clack: {label:"Clackamas County / OCHIN, DAX Copilot add-on SOW #21740", url:"https://docs.clackamas.us/documents/drupal/05757e6a-3624-435e-997a-1b540c0915d3"},
+  vascribe: {label:"VA ambient scribe enterprise RFI (36C10B26Q0056), via BidPulsar", url:"https://bidpulsar.ai/opportunities/5daf9a3ec4e64a81ad3c702fccfd930e-da10-ambient-scribe-enterprise-idiq-va-26-00012979", secondary:true},
+  far: {label:"FAR 52.246-26, Reporting Nonconforming Items", url:"https://www.acquisition.gov/far/52.246-26"},
+  q2a: {label:"Lockheed Martin Aeronautics quality clause Q2A rev 12 (first article inspection)", url:"https://www.lockheedmartin.com/content/dam/lockheed-martin/aero/documents/scm/Quality-Requirements/Clauses/q2a_rev12.pdf"},
+  bank: {label:"Interagency guidance on third-party risk management (Fed, FDIC, OCC, 2023)", url:"https://www.federalregister.gov/documents/2023/06/09/2023-12340/interagency-guidance-on-third-party-relationships-risk-management"},
+  cip: {label:"NERC CIP-013-2, supply chain risk management", url:"https://www.nerc.com/pa/Stand/Reliability%20Standards/CIP-013-2.pdf"},
+  p21: {label:"10 CFR Part 21, reporting of defects", url:"https://www.ecfr.gov/current/title-10/chapter-I/part-21"},
+  fdaqa: {label:"FDA, Contract Manufacturing Arrangements for Drugs: Quality Agreements (2016)", url:"https://www.hhs.gov/guidance/sites/default/files/hhs-guidance-documents/FDA/Contract-Manufacturing-Arrangements-for-Drugs--Quality-Agreements.pdf"},
+  psm: {label:"OSHA 29 CFR 1910.119 (process safety management)", url:"https://www.ecfr.gov/current/title-29/subtitle-B/chapter-XVII/part-1910/subpart-H/section-1910.119"},
+  dscsa: {label:"21 U.S.C. 360eee-1 (drug supply chain, suspect product)", url:"https://www.law.cornell.edu/uscode/text/21/360eee-1"},
+  ftc: {label:"FTC 2019 Facebook order, fact sheet", url:"https://www.ftc.gov/system/files/attachments/press-releases/ftc-imposes-5-billion-penalty-sweeping-new-privacy-restrictions-facebook/2019_order_fact_sheet_facebook.pdf"},
+  omb: {label:"OMB M-25-22, AI acquisition (summary by PilieroMazza)", url:"https://www.pilieromazza.com/omb-issues-memoranda-on-use-and-acquisition-of-ai-by-federal-agencies-part-2-what-it-means-for-government-contractors/", secondary:true},
+  clia1281: {label:"42 CFR 493.1281 (comparing results across instruments)", url:"https://www.ecfr.gov/current/title-42/chapter-IV/subchapter-G/part-493/subpart-K/subject-group-ECFR4ea3a3d7d9b0b3e/section-493.1281"},
+  utmc: {label:"University of Toledo Medical Center blood bank policy 3364-108-108", url:"https://www.utoledo.edu/policies/utmc/bloodbank/pdfs/3364-108-108.pdf"},
+  sbm: {label:"Stony Brook Medicine policy LD0092, contracted services", url:"https://www.stonybrookmedicine.edu/sites/default/files/LD0092.pdf"},
+  nist: {label:"NIST AI Risk Management Framework", url:"https://www.nist.gov/itl/ai-risk-management-framework"},
+  iso: {label:"ISO/IEC 42001 (AI management systems)", url:"https://www.iso.org/standard/81230.html"},
+  sb53: {label:"California SB 53 enrolled text", url:"https://legiscan.com/CA/text/SB53/id/3270002"},
+  letter: {label:"Open Letter on AI and Cybersecurity from the Scientific Community (Oct 2026)", url:"https://ai-security-letter.org/"},
+  map: {label:"Lab Rules Map", url:"https://lindsayguvenc-coder.github.io/lab-rules-map/"}
+};
+
+const THEMES = [
+  {id:"change", name:"Version and change control"},
+  {id:"valid", name:"Validation and acceptance"},
+  {id:"monitor", name:"Monitoring and performance"},
+  {id:"incident", name:"Incidents and reporting"},
+  {id:"audit", name:"Audit and oversight"},
+  {id:"data", name:"Data, security and privacy"},
+  {id:"exit", name:"Continuity and exit"},
+  {id:"people", name:"People and accountability"}
+];
+
+const CLAUSES = [
+  // change
+  {t:"change", s:"lab", name:"Pin the version", text:"The buyer runs one fixed model version. No silent swaps.",
+   ev:[["va","One reagent lot per shipment, with at least 90 days' dating; sequestered lots of QC material."],["va","Contrast: the same SOW requires software upgrades installed as they become commercially available."]]},
+  {t:"change", s:"other", name:"Notice before any change", text:"The vendor gives written notice before any model update, with enough lead time to act on it.",
+   ev:[["va","Closest: the instrument alerts the operator before a new reagent lot runs."],["q2a","Written notice at least 5 business days before changes affecting form, fit, function, safety or reliability."],["omb","Agency AI contracts must require notice of new AI enhancements, features or components."],["clack","Contrast: a price change gets 90 days' notice. A model change gets none."]]},
+  {t:"change", s:"lab", name:"Old and new side by side", text:"Every output is tagged with its version. The buyer can run old and new together and decides when to switch.",
+   ev:[["va","Multiple reagent lots on board at once, each independently calibrated; QC results identified by lot; the operator can select which lot to run."]]},
+  {t:"change", s:"lab", name:"Revalidate on change", text:"Any change that affects performance triggers a defined revalidation before it goes live.",
+   ev:[["va","Method validation requirements stay in effect for future test menu changes and method updates."],["q2a","A full or partial first article inspection after changes affecting form, fit, function, safety or reliability."]]},
+  {t:"change", s:"other", name:"Tiered change control", text:"The contract sorts changes into three kinds: needs the buyer's approval first, notice only, and no notice.",
+   ev:[["fdaqa","The quality agreement should specify which changes need the owner's review and approval before implementation, and which can be made with or without notice."]]},
+  {t:"change", s:"other", name:"Verified updates", text:"The buyer can confirm an update is authentic and unaltered before it runs.",
+   ev:[["cip","Verify the integrity and authenticity of all vendor-provided software and patches (R1.2.5)."]]},
+  {t:"change", s:"lab", name:"A test environment", text:"A separate test environment is provided for updates and configuration changes.",
+   ev:[["va","A test environment or test instance for new systems, configuration changes, interfaces and upgrades."]]},
+  {t:"change", s:"other", name:"Retrain before the change", text:"Affected users are trained before a change takes effect.",
+   ev:[["psm","Affected operating, maintenance and contract employees are informed and trained before a change starts (management of change)."]]},
+
+  // valid
+  {t:"valid", s:"lab", name:"Validation on the buyer's population, at vendor expense", text:"Before go-live and after updates, the vendor supports validation on the buyer's own patients. The buyer signs off.",
+   ev:[["va","Method comparison at the contractor's expense, including correlation studies, sensitivity and false positive and negative rates; reference ranges verified or established on samples representative of the patient population; approved by the local laboratory medical director."]]},
+  {t:"valid", s:"lab", name:"No pay until accepted", text:"Billing starts only after install, training and validation are accepted in writing. Missing the deadline is grounds to terminate.",
+   ev:[["va","Billing starts after installation, training and method validations are accepted in writing; failing the 90-day transition period is sufficient cause to terminate."]]},
+  {t:"valid", s:"other", name:"Pass more than once to pass", text:"Acceptance needs repeated clean results on more than one data set, not one good run.",
+   ev:[["q2a","First article exit requires three consecutive parts from three different lots with no defects."]]},
+  {t:"valid", s:"lab", name:"External benchmarking", text:"Performance data goes to an outside comparison program, so the buyer sees how the model does against everyone else using it.",
+   ev:[["va","Middleware must transmit QC data to Bio-Rad Unity Real Time or a comparable online QC program."]]},
+  {t:"valid", s:"other", name:"A validated backup", text:"A previously validated version stays available for emergencies. The buyer runs a short check before switching.",
+   ev:[["va","Closest: a failover backup server at no cost."],["clia1281","Labs running the same test on more than one instrument evaluate how their results relate twice a year."],["q2a","A full first article inspection after a production lapse of more than two years."]]},
+  {t:"valid", s:"proposed", name:"Model card and study design, delivered", text:"Before signing, the vendor delivers intended use, training data, subgroup performance, limitations and its own validation study design.",
+   ev:[]},
+  {t:"valid", s:"proposed", name:"Two validation resources, kept separate", text:"The vendor supplies a recommended site validation protocol and a testing tool. The buyer runs its own, independently, and decides.",
+   ev:[["va","Closest: the contractor performs and analyzes the method validation, and the medical director approves it."]]},
+
+  // monitor
+  {t:"monitor", s:"lab", name:"A drift alarm that stops automatic use", text:"Real-time alerts when performance drifts, with an automatic stop.",
+   ev:[["va","Moving averages with real-time failure notification and an autoverification interrupt."]]},
+  {t:"monitor", s:"lab", name:"Uptime that counts bad output", text:"Downtime includes any period of clinically unacceptable output, not only outages.",
+   ev:[["va","98% uptime per instrument; downtime means the inability to produce clinically acceptable results."]]},
+  {t:"monitor", s:"lab", name:"Performance data in the buyer's hands", text:"The vendor exposes monitoring data in a form the buyer's own dashboard can use, with reports built together at implementation.",
+   ev:[["va","Interactive, customizable, on-demand summary reports, including turnaround time, volumes and QC."],["omb","Agency AI contracts must address ongoing testing and monitoring of performance, risks and effectiveness."]]},
+  {t:"monitor", s:"lab", name:"Response times and a 24/7 contact", text:"Round-the-clock support with a stated callback time and an on-call contact, written into the contract.",
+   ev:[["va","Technical assistance 24 hours a day with a maximum 1-hour callback; repair response within 24 hours; a local field engineer."],["gulf","A 24-hour order line and dedicated emergency lines (in an operating guide, not the contract)."],["rivco","Contrast: no named 24/7 contact in the contract itself."]]},
+  {t:"monitor", s:"lab", name:"Regular performance review", text:"Vendor performance is reviewed on a fixed cadence, with meetings, reports and response times set in advance.",
+   ev:[["va","Contractor performance rated annually by the chemistry supervisor."],["sbm","Formal evaluations of contracted services conducted periodically, using performance metrics and end-user feedback."]]},
+  {t:"monitor", s:"proposed", name:"Fleet-wide data", text:"The vendor shares what it sees across all customers, so the buyer can compare its experience with everyone else's.",
+   ev:[]},
+
+  // incident
+  {t:"incident", s:"lab", name:"An incident report for every failure", text:"A written report for each failure, fast, with proof the fix worked, and a root cause on a deadline.",
+   ev:[["va","A malfunction report within 24 hours of each repair, including a QC run showing acceptable performance."],["q2a","Root cause and corrective action due within 30 days."]]},
+  {t:"incident", s:"lab", name:"Lookback on a clock", text:"When a model or its data is later found bad, every customer is told within a set number of days, earlier versions are pulled, and affected users are notified.",
+   ev:[["cfr48227","Federal rule: a hospital that regularly uses an outside blood supplier must have an agreement requiring the supplier to notify it within 3 calendar days when a donor's earlier blood is found to carry risk. Separately, the hospital must quarantine prior units and notify recipients."],["rivco","3-day donor notice and recipient notification written into a county hospital contract."]]},
+  {t:"incident", s:"other", name:"Everyone told within 24 hours", text:"Once a problem is confirmed, every customer is told within 24 hours, and a notice can't be quietly withdrawn.",
+   ev:[["dscsa","Notify FDA and immediate trading partners within 24 hours of determining a product is illegitimate; a notice is terminated only in consultation with FDA."]]},
+  {t:"incident", s:"other", name:"\"Can't evaluate\" still means tell", text:"If the vendor finds a problem it can't assess, it tells customers quickly so they can.",
+   ev:[["p21","A supplier that can't evaluate a deviation must inform its purchasers or affected licensees within 5 working days."]]},
+  {t:"incident", s:"other", name:"Near misses count", text:"Failures that could have caused harm are investigated and reported, not only ones that did.",
+   ev:[["psm","Investigate incidents that resulted in, or could reasonably have resulted in, a catastrophic release, starting within 48 hours."],["letter","Scientists' ask: containment failures reported to an international body, no harm threshold."],["sb53","Contrast: SB 53's critical safety incident needs harm or catastrophic risk."]]},
+  {t:"incident", s:"other", name:"Report to a shared registry, and check it", text:"Serious failures go to a cross-industry registry, and vendors check it before releasing.",
+   ev:[["far","Report critical or major nonconformances in common items, and counterfeits, to GIDEP within 60 days; screen GIDEP reports as part of quality inspection. Not flowed down to commercial products."]]},
+  {t:"incident", s:"other", name:"Vulnerabilities and vendor incidents disclosed", text:"The vendor tells the buyer about known weaknesses and about its own incidents that create risk for the buyer, and coordinates the response.",
+   ev:[["cip","Vendors notify of their own incidents that create risk (R1.2.1), coordinate response (R1.2.2) and disclose known vulnerabilities (R1.2.4)."]]},
+  {t:"incident", s:"other", name:"Regulatory events shared", text:"The vendor tells the buyer about enforcement actions, and shares what regulators find when they inspect it.",
+   ev:[["bank","Third party notifies the bank of significant changes and enforcement actions."],["fdaqa","Expectations for FDA inspections of the contract facility and how findings are shared with the owner."]]},
+  {t:"incident", s:"other", name:"Vendor on the root-cause team", text:"The vendor joins the buyer's investigation when its product is involved.",
+   ev:[["psm","The investigation team includes a contract employee when the incident involved contractor work."]]},
+  {t:"incident", s:"lab", name:"Track record before signing", text:"Before award, the vendor discloses its history of failures and recalls.",
+   ev:[["va","Before award: a downtime summary, including average downtimes and number of recalls per year."]]},
+
+  // audit
+  {t:"audit", s:"other", name:"An outside auditor the buyer picks", text:"Audited against a named standard. The buyer picks the auditor; the vendor pays.",
+   ev:[["ftc","The independent assessor can be approved or removed only by an independent board committee and the FTC."],["nist","Possible standard to name."],["iso","Possible standard to name."]]},
+  {t:"audit", s:"proposed", name:"Findings straight to the buyer", text:"Audit findings go to the contract owner directly, not only to the vendor's board.",
+   ev:[["ftc","Closest: the assessor reports to the regulator, not only to the company."]]},
+  {t:"audit", s:"other", name:"Audit rights that reach subcontractors", text:"The buyer can audit the vendor and its relevant subcontractors, and require fixes.",
+   ev:[["bank","Periodic, independent audits of the third party and relevant subcontractors; the right to require remediation."]]},
+  {t:"audit", s:"other", name:"The regulator can look too", text:"The vendor's work and records are open to the buyer's regulator.",
+   ev:[["bank","Third-party activities subject to regulatory examination and oversight."]]},
+  {t:"audit", s:"other", name:"Flow-down to the model maker", text:"Audit, notice and validation rights pass through to whoever built the model, when the vendor resells it.",
+   ev:[["far","The reporting clause flows down to subcontracts for critical items."],["bank","Address subcontracting without the bank's consent; state the third party's liability for subcontractors."]]},
+  {t:"audit", s:"lab", name:"Contract review on a schedule", text:"The contract is reviewed at a set interval, set outside the vendor relationship.",
+   ev:[["utmc","Blood supplier agreements reviewed annually by legal and compliance."],["sbm","Annual review of the contracted services list; cites Joint Commission LD.04.03.09."],["cip","Supply chain plan reviewed at least every 15 months, approved by the CIP Senior Manager or delegate."]]},
+  {t:"audit", s:"lab", name:"Inspection of the vendor's systems", text:"The buyer can inspect the vendor's systems that handle its data.",
+   ev:[["va","The VA reserves the right to inspect contractor IT resources for data security controls."]]},
+
+  // data
+  {t:"data", s:"lab", name:"Records kept, in the buyer's custody", text:"Logs and records kept on a stated schedule, in the buyer's custody, open on request.",
+   ev:[["va","Records stored for 2 years in readable long-term storage; hard drives stay with the VA."],["dscsa","Suspect product investigation records kept at least 6 years."],["p21","Evaluation records kept at least 5 years, open to inspection."]]},
+  {t:"data", s:"other", name:"No training on buyer data", text:"No use of the buyer's data to train the vendor's models without written consent.",
+   ev:[["omb","Agencies must bar vendors from using non-public agency data to further train publicly or commercially available AI without explicit consent."]]},
+  {t:"data", s:"other", name:"Portability and derived data", text:"The buyer owns its data and what's derived from it, and can take both in a usable format.",
+   ev:[["omb","Clear data and model portability, and ongoing rights to data and derived products at closeout."],["bank","Whether the bank owns data the third party generates."]]},
+  {t:"data", s:"lab", name:"Breach notice", text:"Breaches reported immediately, with mitigation.",
+   ev:[["va","Report immediately any breach of safeguards and mitigate harmful effects."],["bank","Breaches disclosed in a timely manner."]]},
+  {t:"data", s:"other", name:"A named security standard", text:"Security managed to a named standard.",
+   ev:[["vascribe","Vendors must show readiness for a FedRAMP-compliant environment."],["clack","Contrast: none stated in the add-on SOW."]]},
+  {t:"data", s:"proposed", name:"Data strategy, disclosed and maintained", text:"What is collected, where it lives, who can touch it and what it's used for, kept current, with notice before any of it changes.",
+   ev:[]},
+
+  // exit
+  {t:"exit", s:"other", name:"Recovery objectives, tested together", text:"Stated recovery times and data-loss limits, with continuity plans tested jointly.",
+   ev:[["bank","Specific recovery time and recovery point objectives; consider joint testing."]]},
+  {t:"exit", s:"proposed", name:"A safety hold without penalty", text:"The buyer can stop using the system for safety at any time without breaching the contract.",
+   ev:[["bank","Closest: the right to terminate without penalty if the regulator directs."],["clack","Contrast: fees are non-refundable and leaving early costs the remaining months."]]},
+  {t:"exit", s:"proposed", name:"Walk away on a failed audit", text:"A failed audit lets the buyer terminate without penalty.",
+   ev:[["va","Closest: failing the transition period is grounds to terminate."]]},
+  {t:"exit", s:"other", name:"Exit help and data back", text:"On exit, data returned or destroyed on a schedule, plus transition help.",
+   ev:[["bank","Timely return or destruction of data; the right to terminate with reasonable notice and without penalty if the regulator directs."],["omb","Agree on data format and usability at closeout."],["clack","Contrast: only user access is turned off at termination."]]},
+  {t:"exit", s:"lab", name:"Emergency triage", text:"A stated priority order during outages and shortages, and a plan for national emergencies.",
+   ev:[["rivco","During limited inventory, orders filled by patient urgency."],["gulf","Large-scale surge coordinated through AABB's Interorganizational Task Force on Domestic Disasters and Acts of Terrorism (operating guide, not the contract)."]]},
+  {t:"exit", s:"other", name:"Change-of-control notice", text:"The vendor tells the buyer about significant changes, like a merger or new subcontractor.",
+   ev:[["bank","Notification of significant changes."]]},
+  {t:"exit", s:"other", name:"Access ended on time", text:"The vendor tells the buyer when its people's access should end.",
+   ev:[["cip","Vendors notify when remote or onsite access should no longer be granted (R1.2.3)."]]},
+
+  // people
+  {t:"people", s:"other", name:"Named contacts with written duties", text:"A named account executive on the vendor side, with written responsibilities and an escalation path.",
+   ev:[["fdaqa","The agreement names key contacts for both parties and how they communicate."],["clack","Named contacts on both sides, for the project."]]},
+  {t:"people", s:"other", name:"Officers who sign their names", text:"The CEO and an externally certified safety officer personally certify compliance, with personal consequences.",
+   ev:[["ftc","The CEO must personally certify compliance, exposed to civil and criminal penalties."],["p21","Directors and responsible officers face civil penalties for knowingly failing to report."],["map","Named responsible persons and personal penalties across regulated fields (rows R03, R04, R12)."]]},
+  {t:"people", s:"lab", name:"Vendor-paid training", text:"Training for users and key operators, paid by the vendor, refreshed with updates.",
+   ev:[["va","On-site training for all operators on all shifts; key operator training yearly; off-site training travel paid for 2 staff per instrument per year."]]},
+  {t:"people", s:"other", name:"Responsibility that can't be contracted away", text:"The buyer keeps final say on release, and the contract can't move legal responsibility off either party.",
+   ev:[["fdaqa","The owner's quality unit approves or rejects drugs made by the contractor; a quality agreement can't delegate CGMP responsibility."]]},
+  {t:"people", s:"proposed", name:"Patient consent materials", text:"The vendor supports patient consent and explanation where AI is in the room.",
+   ev:[["clack","Closest: the buyer, not the vendor, must document how it obtains patient consent for ambient recording."]]},
+  {t:"people", s:"proposed", name:"Liability in writing", text:"Who pays when the model causes harm, written into the contract.",
+   ev:[]}
+];
+
+const STATUS = {
+  lab:{label:"In hospital purchasing now", c:"var(--lab)"},
+  other:{label:"In another field's rules", c:"var(--other)"},
+  proposed:{label:"Proposed", c:"var(--prop)"}
+};
+const esc = s => String(s).replace(/[&<>"]/g, ch => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[ch]));
+const isContrast = t => /^(Contrast|Closest)/.test(t);
+
+function tally(){
+  const el = document.getElementById("tally");
+  el.innerHTML = Object.entries(STATUS).map(([k,v]) => {
+    const n = CLAUSES.filter(c => c.s === k).length;
+    return `<div class="tile" style="--c:${v.c}"><span class="n">${n}</span><span class="l">${esc(v.label)}</span></div>`;
+  }).join("");
+}
+
+let filter = "all", query = "";
+function render(){
+  const q = query.trim().toLowerCase();
+  const out = THEMES.map(th => {
+    const rows = CLAUSES.filter(c => c.t === th.id && (filter === "all" || c.s === filter) && (!q ||
+      (c.name + " " + c.text + " " + c.ev.map(e => S[e[0]].label + " " + e[1]).join(" ")).toLowerCase().includes(q)));
+    if (!rows.length) return "";
+    return `<div class="theme"><h3>${esc(th.name)}</h3>` + rows.map(c => {
+      const st = STATUS[c.s];
+      const ev = c.ev.length ? c.ev.map(([k,t]) => {
+        const src = S[k];
+        return `<li class="${isContrast(t) ? "contrast" : ""}">${esc(t)}<span class="who"><a href="${esc(src.url)}">${esc(src.label)}</a>${src.secondary ? '<span class="sec">secondary</span>' : ""}</span></li>`;
+      }).join("") : `<li class="empty">Not found in any contract or rule checked.</li>`;
+      return `<div class="row"><div class="head"><span class="badge ${c.s}" style="--c:${st.c}">${esc(st.label)}</span><span class="name">${esc(c.name)}</span><p class="text">${esc(c.text)}</p></div><ul class="ev">${ev}</ul></div>`;
+    }).join("") + `</div>`;
+  }).join("");
+  document.getElementById("list").innerHTML = out || `<div class="none">No clauses match.</div>`;
+}
+document.querySelectorAll(".chip").forEach(b => b.addEventListener("click", () => {
+  filter = b.dataset.f;
+  document.querySelectorAll(".chip").forEach(x => x.setAttribute("aria-pressed", String(x === b)));
+  render();
+}));
+document.getElementById("q").addEventListener("input", e => { query = e.target.value; render(); });
+tally(); render();
+</script>
+</body>
+</html>
