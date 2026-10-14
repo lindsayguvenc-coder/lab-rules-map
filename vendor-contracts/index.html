@@ -106,7 +106,7 @@ footer{font-size:13px;color:var(--muted);border-top:1px solid var(--rule);paddin
   <h2 id="finds-h">Four things worth knowing first</h2>
   <div class="finds">
     <div class="find"><h3>Law already writes some of these clauses</h3><p>Hospitals that regularly use an outside blood supplier must have an agreement requiring notice within 3 calendar days when a donor's earlier blood turns out to carry risk. Nuclear procurement documents must state, when applicable, that the defect-reporting rule applies.</p><div class="src"><a href="https://www.ecfr.gov/current/title-42/chapter-IV/subchapter-G/part-482/subpart-C/section-482.27">42 CFR 482.27</a> · <a href="https://www.ecfr.gov/current/title-10/chapter-I/part-21">10 CFR Part 21</a></div></div>
-    <div class="find"><h3>The federal government already asks this for itself</h3><p>Agency AI contracts must require notice of new AI features, no training on agency data without consent, data and model portability, and ongoing testing.</p><div class="src">OMB M-25-22 (2025), via <a href="https://www.pilieromazza.com/omb-issues-memoranda-on-use-and-acquisition-of-ai-by-federal-agencies-part-2-what-it-means-for-government-contractors/">PilieroMazza</a> <span class="sec">secondary</span></div></div>
+    <div class="find"><h3>The federal government already asks this for itself</h3><p>Agency AI contracts must bar training on agency data without consent and must let the agency monitor and evaluate performance. Agencies are also told to guard against lock-in and to consider requiring notice before new AI features are added.</p><div class="src"><a href="https://www.whitehouse.gov/wp-content/uploads/2025/02/M-25-22-Driving-Efficient-Acquisition-of-Artificial-Intelligence-in-Government.pdf">OMB M-25-22</a> (Apr 3, 2025)</div></div></div>
     <div class="find"><h3>Aerospace shares failures across the industry</h3><p>Contractors report serious defects to a shared registry and check it before using parts. Commercial products are carved out, which is exactly where off-the-shelf AI sits.</p><div class="src"><a href="https://www.acquisition.gov/far/52.246-26">FAR 52.246-26</a></div></div>
     <div class="find"><h3>A real clinical AI purchase</h3><p>In one county's AI scribe add-on, a price change gets 90 days' notice. A model change gets none.</p><div class="src"><a href="https://docs.clackamas.us/documents/drupal/05757e6a-3624-435e-997a-1b540c0915d3">Clackamas County / OCHIN, DAX Copilot SOW</a></div></div>
   </div>
@@ -136,9 +136,8 @@ footer{font-size:13px;color:var(--muted);border-top:1px solid var(--rule);paddin
 <section aria-labelledby="open-h" class="prose">
   <h2 id="open-h">Not settled yet</h2>
   <ul>
-    <li>The accreditation standard that sets how often blood supplier contracts are reviewed. Hospital policies show annual review; the exact AABB or CAP standard isn't confirmed here.</li>
-    <li>OMB M-25-22 is cited from a law firm summary. The primary memo should replace it.</li>
-    <li>The VA ambient scribe solicitation's draft work statement hasn't been read; its FedRAMP requirement is cited from a summary. It may hold more AI-specific terms.</li>
+    <li>How often blood supplier contracts get reviewed. AABB's standard (4.2) says agreements and changes to them must be reviewed, without setting an interval, as quoted in a hospital training document; the annual cadence comes from hospital policy.</li>
+        <li>The VA ambient scribe solicitation's draft work statement hasn't been read; its FedRAMP requirement is cited from a summary. It may hold more AI-specific terms.</li>
     <li>Washington State's April 2025 AI contract clauses haven't been reviewed yet.</li>
   </ul>
 </section>
@@ -169,7 +168,7 @@ const S = {
   psm: {label:"OSHA 29 CFR 1910.119 (process safety management)", url:"https://www.ecfr.gov/current/title-29/subtitle-B/chapter-XVII/part-1910/subpart-H/section-1910.119"},
   dscsa: {label:"21 U.S.C. 360eee-1 (drug supply chain, suspect product)", url:"https://www.law.cornell.edu/uscode/text/21/360eee-1"},
   ftc: {label:"FTC 2019 Facebook order, fact sheet", url:"https://www.ftc.gov/system/files/attachments/press-releases/ftc-imposes-5-billion-penalty-sweeping-new-privacy-restrictions-facebook/2019_order_fact_sheet_facebook.pdf"},
-  omb: {label:"OMB M-25-22, AI acquisition (summary by PilieroMazza)", url:"https://www.pilieromazza.com/omb-issues-memoranda-on-use-and-acquisition-of-ai-by-federal-agencies-part-2-what-it-means-for-government-contractors/", secondary:true},
+  omb: {label:"OMB M-25-22, Driving Efficient Acquisition of AI in Government (Apr 3, 2025)", url:"https://www.whitehouse.gov/wp-content/uploads/2025/02/M-25-22-Driving-Efficient-Acquisition-of-Artificial-Intelligence-in-Government.pdf"},
   clia1281: {label:"42 CFR 493.1281 (comparing results across instruments)", url:"https://www.ecfr.gov/current/title-42/chapter-IV/subchapter-G/part-493/subpart-K/subject-group-ECFR4ea3a3d7d9b0b3e/section-493.1281"},
   utmc: {label:"University of Toledo Medical Center blood bank policy 3364-108-108", url:"https://www.utoledo.edu/policies/utmc/bloodbank/pdfs/3364-108-108.pdf"},
   sbm: {label:"Stony Brook Medicine policy LD0092, contracted services", url:"https://www.stonybrookmedicine.edu/sites/default/files/LD0092.pdf"},
@@ -196,7 +195,7 @@ const CLAUSES = [
   {t:"change", s:"lab", name:"Pin the version", text:"The buyer runs one fixed model version. No silent swaps.",
    ev:[["va","One reagent lot per shipment, with at least 90 days' dating; sequestered lots of QC material."],["va","Contrast: the same SOW requires software upgrades installed as they become commercially available."]]},
   {t:"change", s:"other", name:"Notice before any change", text:"The vendor gives written notice before any model update, with enough lead time to act on it.",
-   ev:[["va","Closest: the instrument alerts the operator before a new reagent lot runs."],["q2a","Written notice at least 5 business days before changes affecting form, fit, function, safety or reliability."],["omb","Agency AI contracts must require notice of new AI enhancements, features or components."],["clack","Contrast: a price change gets 90 days' notice. A model change gets none."]]},
+   ev:[["va","Closest: the instrument alerts the operator before a new reagent lot runs."],["q2a","Written notice at least 5 business days before changes affecting form, fit, function, safety or reliability."],["omb","Agencies should consider requiring vendors to give notice before new AI enhancements, features or components are added."],["clack","Contrast: a price change gets 90 days' notice. A model change gets none."]]},
   {t:"change", s:"lab", name:"Old and new side by side", text:"Every output is tagged with its version. The buyer can run old and new together and decides when to switch.",
    ev:[["va","Multiple reagent lots on board at once, each independently calibrated; QC results identified by lot; the operator can select which lot to run."]]},
   {t:"change", s:"lab", name:"Revalidate on change", text:"Any change that affects performance triggers a defined revalidation before it goes live.",
@@ -232,7 +231,7 @@ const CLAUSES = [
   {t:"monitor", s:"lab", name:"Uptime that counts bad output", text:"Downtime includes any period of clinically unacceptable output, not only outages.",
    ev:[["va","98% uptime per instrument; downtime means the inability to produce clinically acceptable results."]]},
   {t:"monitor", s:"lab", name:"Performance data in the buyer's hands", text:"The vendor exposes monitoring data in a form the buyer's own dashboard can use, with reports built together at implementation.",
-   ev:[["va","Interactive, customizable, on-demand summary reports, including turnaround time, volumes and QC."],["omb","Agency AI contracts must address ongoing testing and monitoring of performance, risks and effectiveness."]]},
+   ev:[["va","Interactive, customizable, on-demand summary reports, including turnaround time, volumes and QC."],["omb","Agency AI contracts must let the agency regularly monitor and evaluate performance, risks and effectiveness, with the vendor giving access and time for independent evaluation."]]},
   {t:"monitor", s:"lab", name:"Response times and a 24/7 contact", text:"Round-the-clock support with a stated callback time and an on-call contact, written into the contract.",
    ev:[["va","Technical assistance 24 hours a day with a maximum 1-hour callback; repair response within 24 hours; a local field engineer."],["gulf","A 24-hour order line and dedicated emergency lines (in an operating guide, not the contract)."],["rivco","Contrast: no named 24/7 contact in the contract itself."]]},
   {t:"monitor", s:"lab", name:"Regular performance review", text:"Vendor performance is reviewed on a fixed cadence, with meetings, reports and response times set in advance.",
@@ -282,9 +281,9 @@ const CLAUSES = [
   {t:"data", s:"lab", name:"Records kept, in the buyer's custody", text:"Logs and records kept on a stated schedule, in the buyer's custody, open on request.",
    ev:[["va","Records stored for 2 years in readable long-term storage; hard drives stay with the VA."],["dscsa","Suspect product investigation records kept at least 6 years."],["p21","Evaluation records kept at least 5 years, open to inspection."]]},
   {t:"data", s:"other", name:"No training on buyer data", text:"No use of the buyer's data to train the vendor's models without written consent.",
-   ev:[["omb","Agencies must bar vendors from using non-public agency data to further train publicly or commercially available AI without explicit consent."]]},
+   ev:[["omb","Agency AI contracts must permanently prohibit using non-public agency data and outputs to further train AI, absent explicit agency consent."]]},
   {t:"data", s:"other", name:"Portability and derived data", text:"The buyer owns its data and what's derived from it, and can take both in a usable format.",
-   ev:[["omb","Clear data and model portability, and ongoing rights to data and derived products at closeout."],["bank","Whether the bank owns data the third party generates."]]},
+   ev:[["omb","Protections against lock-in, including knowledge transfer and data and model portability."],["bank","Whether the bank owns data the third party generates."]]},
   {t:"data", s:"lab", name:"Breach notice", text:"Breaches reported immediately, with mitigation.",
    ev:[["va","Report immediately any breach of safeguards and mitigate harmful effects."],["bank","Breaches disclosed in a timely manner."]]},
   {t:"data", s:"other", name:"A named security standard", text:"Security managed to a named standard.",
@@ -300,7 +299,7 @@ const CLAUSES = [
   {t:"exit", s:"proposed", name:"Walk away on a failed audit", text:"A failed audit lets the buyer terminate without penalty.",
    ev:[["va","Closest: failing the transition period is grounds to terminate."]]},
   {t:"exit", s:"other", name:"Exit help and data back", text:"On exit, data returned or destroyed on a schedule, plus transition help.",
-   ev:[["bank","Timely return or destruction of data; the right to terminate with reasonable notice and without penalty if the regulator directs."],["omb","Agree on data format and usability at closeout."],["clack","Contrast: only user access is turned off at termination."]]},
+   ev:[["bank","Timely return or destruction of data; the right to terminate with reasonable notice and without penalty if the regulator directs."],["omb","When a contract won't be extended, agencies should agree with the vendor on data format and usability and plan the transfer."],["clack","Contrast: only user access is turned off at termination."]]},
   {t:"exit", s:"lab", name:"Emergency triage", text:"A stated priority order during outages and shortages, and a plan for national emergencies.",
    ev:[["rivco","During limited inventory, orders filled by patient urgency."],["gulf","Large-scale surge coordinated through AABB's Interorganizational Task Force on Domestic Disasters and Acts of Terrorism (operating guide, not the contract)."]]},
   {t:"exit", s:"other", name:"Change-of-control notice", text:"The vendor tells the buyer about significant changes, like a merger or new subcontractor.",
