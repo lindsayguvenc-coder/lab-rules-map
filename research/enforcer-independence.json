@@ -1,0 +1,283 @@
+{
+ "row": "R39",
+ "name": "Enforcer independence",
+ "group_suggested": "Someone outside checks (next to R31)",
+ "asked": "Who funds and staffs the inspector (fees, appropriations, industry assessments), and how it can be overruled.",
+ "as_of": "2026-11-23",
+ "status_note": "status left null on purpose; Lindsay scores",
+ "cross_cutting": {
+  "text": "Feb 2025 EO 'Ensuring Accountability for All Agencies' sends independent agencies' significant rules to White House OIRA review. Trump v. Slaughter (June 29, 2026, 6-3) struck the FTC's for-cause removal protection and overturned Humphrey's Executor; Trump v. Cook (5-4, same day) kept Fed Governor Cook in place on narrow procedural grounds. Applies to nuclear, grid and banking rows below.",
+  "sources": [
+   {
+    "label": "EO 14215 discussion, Reg Review (Sept 2026)",
+    "url": "https://www.theregreview.org/2026/09/22/perugini-nuclear-regulatory-policy-and-presidential-power/",
+    "primary": false
+   },
+   {
+    "label": "Ballotpedia on Trump v. Slaughter / Cook",
+    "url": "https://news.ballotpedia.org/2026/07/01/u-s-supreme-court-rules-6-3-for-presidential-removal-of-independent-agency-commissioners/",
+    "primary": false
+   }
+  ],
+  "note": "Opinion text itself not fetched; secondary sources only."
+ },
+ "regimes": {
+  "labs": {
+   "status": null,
+   "funding": "Federal CLIA is user-fee funded by statute: lab certificate fees plus inspection fees must cover all program costs, surveys included. Accredited labs pay CAP's own accreditation fees.",
+   "staffing": "CLIA surveys are usually done by state health department staff. CAP inspections are done by volunteer peer teams of practicing lab professionals (CAP cites about 7,750).",
+   "overrule": "CMS validates accreditors and can withdraw deemed status (42 CFR 488.9, already in R31). CMS sits inside HHS, an executive department: no removal protection to lose.",
+   "sources": [
+    {
+     "label": "CMS CLIA brochure (fees cover all costs)",
+     "url": "https://CMS.gov/Outreach-and-Education/Medicare-Learning-Network-MLN/MLNProducts/Downloads/CLIABrochure.pdf",
+     "primary": true
+    },
+    {
+     "label": "42 CFR 493 subpart F (fees)",
+     "url": "https://www.ecfr.gov/current/title-42/chapter-IV/subchapter-G/part-493/subpart-F",
+     "primary": true
+    },
+    {
+     "label": "CAP volunteer peer inspectors",
+     "url": "https://cap.org/laboratory-improvement/accreditation/inspector-tools-and-training",
+     "primary": true
+    },
+    {
+     "label": "CAP annual report (7,750 volunteers)",
+     "url": "https://annualreport.cap.org/?p=11",
+     "primary": true
+    }
+   ],
+   "note": "CA Laboratory Field Services funding source not checked. 'Usually state staff' is from a secondary summary (pathologyoutlines), not fetched from CMS."
+  },
+  "nuclear": {
+   "status": null,
+   "funding": "NEIMA requires NRC to recover about 100% of its budget from licensee fees (10 CFR 170 service fees, 10 CFR 171 annual fees), minus excluded activities. FY2026: about $819.4M billed as fees.",
+   "staffing": "Federal NRC staff, including resident inspectors at plants (R02).",
+   "overrule": "Under the Feb 2025 EO, NRC draft rules go to OIRA; if NRC and OIRA disagree the President decides (per NRC to E&E News). EO 14300 (May 2025) ordered a wholesale rule revision with NRC's DOGE team. The President removed Commissioner Hanson June 14, 2025; he did not challenge it. Slaughter likely reaches NRC's for-cause protection (not yet litigated for NRC).",
+   "sources": [
+    {
+     "label": "NRC FY2026 final fee rule, 91 FR 36470",
+     "url": "https://www.federalregister.gov/documents/2026/06/16/2026-12067/fee-schedules-fee-recovery-for-fiscal-year-2026",
+     "primary": true
+    },
+    {
+     "label": "NRC fee breakdown ML26021A012",
+     "url": "https://www.nrc.gov/docs/ML2602/ML26021A012.pdf",
+     "primary": true
+    },
+    {
+     "label": "EO 14300",
+     "url": "https://www.federalregister.gov/documents/2025/05/29/2025-09798/ordering-the-reform-of-the-nuclear-regulatory-commission",
+     "primary": true
+    },
+    {
+     "label": "E&E News, How the NRC lost its independence",
+     "url": "https://www.eenews.net/articles/how-the-nrc-lost-its-independence/",
+     "primary": false
+    },
+    {
+     "label": "Morgan Lewis on Hanson removal",
+     "url": "https://www.morganlewis.com/ja/blogs/upandatom/2026/01/with-a-new-chair-and-full-commission-nrc-enters-2026-poised-for-action",
+     "primary": false
+    }
+   ],
+   "note": "R31 nuclear (NRC Inspector General) is still 'Not checked'; this row doesn't fill it."
+  },
+  "aviation": {
+   "status": null,
+   "funding": "The Airport and Airway Trust Fund, built from aviation excise taxes on tickets, cargo and fuel, is FAA's primary funding source, including safety inspections; general fund money adds to it.",
+   "staffing": "Mixed. FAA inspectors, plus Organization Designation Authorization: a unit of Boeing employees (over 1,000) performs delegated FAA inspections and approvals. Renewed for 3 years from June 1, 2025. FAA fined Boeing in 2020 for managers pressuring ODA staff.",
+   "overrule": "NTSB can amend or reverse FAA certificate actions (already in R31). FAA sits inside DOT, an executive department. FAA Administrator removal terms not fetched.",
+   "sources": [
+    {
+     "label": "FAA AATF page",
+     "url": "https://www.faa.gov/about/budget/aatf",
+     "primary": true
+    },
+    {
+     "label": "49 U.S.C. §44736 (ODA), via FAA ODA office",
+     "url": "https://www.faa.gov/about/office_org/headquarters_offices/avs/offices/oda",
+     "primary": true
+    },
+    {
+     "label": "FAA statement on Boeing ODA renewal",
+     "url": "https://www.faa.gov/newsroom/faa-statement-boeing-airworthiness-certificates",
+     "primary": true
+    },
+    {
+     "label": "FAA 2020 civil penalty, undue pressure on designees",
+     "url": "https://www.faa.gov/newsroom/faa-proposes-125-million-civil-penalties-against-boeing-company",
+     "primary": true
+    },
+    {
+     "label": "Ground News on ODA headcount (>1,000)",
+     "url": "https://ground.news/article/faa-extending-program-allowing-boeing-to-perform-tasks-on-agencys-behalf",
+     "primary": false
+    }
+   ],
+   "note": "Trust fund vs general fund share for FY2026 not pulled."
+  },
+  "banking": {
+   "status": null,
+   "funding": "No appropriations. OCC: about 94% from semiannual assessments on the banks it supervises (12 U.S.C. 481-482); the Comptroller alone decides how funds are spent (12 U.S.C. 16). FDIC: deposit insurance assessments. Fed: its own earnings, budget set internally.",
+   "staffing": "Federal examiners. Historically, OCC examiners were paid directly by banks to shield them from appropriations pressure.",
+   "overrule": "Fed governors: for-cause removal held for now (Trump v. Cook, 5-4, narrow; could return). OCC and FDIC leadership: Slaughter's reasoning likely applies; not separately checked. Material-loss IG reviews already in R31.",
+   "sources": [
+    {
+     "label": "OCC FY2027 Budget in Brief (94% assessments)",
+     "url": "https://home.treasury.gov/system/files/266/21.-OCC-FY-2027-BIB.pdf",
+     "primary": true
+    },
+    {
+     "label": "OCC FY2027 CJ (12 USC 16, 481, 482)",
+     "url": "https://home.treasury.gov/system/files/266/20.-OCC-FY-2027-CJ.pdf",
+     "primary": true
+    },
+    {
+     "label": "Atlanta Fed, Congressional control over banking agencies' budgets",
+     "url": "https://www.atlantafed.org/cenfis/publications/notesfromthevault/07-congressional-control-over-the-banking-agencies-budgets-2017-07-31",
+     "primary": true
+    },
+    {
+     "label": "Bloomberg Law on Trump v. Cook",
+     "url": "https://news.bloomberglaw.com/us-law-week/supreme-court-lets-feds-lisa-cook-stay-in-job-for-now",
+     "primary": false
+    }
+   ],
+   "note": "The Atlanta Fed piece is from 2017; funding model unchanged per OCC 2027 documents."
+  },
+  "pharma": {
+   "status": null,
+   "funding": "Split. FY2026 request: $3.6B user fees vs $3.2B appropriations. PDUFA fees covered 78% of the drug review program in 2024 (7% in 1993). Review-time goals are negotiated with manufacturers and reauthorized by Congress every 5 years; PDUFA expires Sept 30, 2027.",
+   "staffing": "Federal FDA staff; FDA's Office of Inspections and Investigations is its sole field operations office.",
+   "overrule": "FDA sits inside HHS, an executive department; the commissioner serves at will. Fee collection is conditioned on Congress keeping FDA's own appropriations at a floor.",
+   "sources": [
+    {
+     "label": "FDA FY2026 budget summary",
+     "url": "https://www.fda.gov/media/186731/download",
+     "primary": true
+    },
+    {
+     "label": "FDA FY2025 PDUFA financial report",
+     "url": "https://www.fda.gov/media/190768/download",
+     "primary": true
+    },
+    {
+     "label": "FDA performance budget (fees negotiated with manufacturers)",
+     "url": "https://www.fda.gov/about-fda/fda-track-agency-wide-program-performance/fda-track-performance-budget-measures",
+     "primary": true
+    },
+    {
+     "label": "RAPS on PDUFA share 7% to 78%",
+     "url": "https://www.raps.org/resource/makary-suggests-lower-pdufa-fees-as-reauthorizatio.html",
+     "primary": false
+    },
+    {
+     "label": "CRS R44576 FDA budget fact sheet",
+     "url": "https://www.everycrsreport.com/reports/R44576.html",
+     "primary": true
+    }
+   ],
+   "note": "Whether inspection staff specifically are fee-funded or appropriation-funded not separated out."
+  },
+  "chemical": {
+   "status": null,
+   "funding": "In California, local CUPAs run the accident-prevention program (CalARP) on fees charged to the regulated businesses, plus a state surcharge per business ($370/yr CalARP as of Oct 2023).",
+   "staffing": "Local CUPA staff (county or fire agencies); federal EPA and OSHA staff.",
+   "overrule": "OSHA citations (including process safety) can be contested before OSHRC, a separate appropriated adjudicator ($14.2M) independent of OSHA and the Labor Department. EPA retains oversight of delegated programs (R31).",
+   "sources": [
+    {
+     "label": "CalEPA single-fee statement (CUPAs funded by business fees)",
+     "url": "https://cers.calepa.ca.gov/wp-content/uploads/2017/04/calepa-single-fee_surcharge.pdf",
+     "primary": true
+    },
+    {
+     "label": "CalEPA Aug 2026 single-fee guidance",
+     "url": "https://calepa.ca.gov/wp-content/uploads/2026/08/2026-08-Guidance-Use-of-Single-Fees-and-Penalties.pdf",
+     "primary": true
+    },
+    {
+     "label": "Alameda County CUPA surcharge increase",
+     "url": "https://achcsadev.alamedacountyca.gov/update/cupa-state-surcharge-increase-for-fy2023-2024",
+     "primary": true
+    },
+    {
+     "label": "OSHRC FY2026 budget",
+     "url": "https://www.oshrc.gov/wp-content/uploads/FY-2026-Performance-Budget-and-Justification.pdf",
+     "primary": true
+    },
+    {
+     "label": "OSHRC FY2027 (independent of OSHA/DOL)",
+     "url": "https://www.oshrc.gov/wp-content/uploads/FY27-OSHRC-Performance-Budget-and-Justification-FINAL.pdf",
+     "primary": true
+    }
+   ],
+   "note": "Federal EPA RMP and OSHA PSM budgets not fetched; no user fee found for either in this pass."
+  },
+  "grid": {
+   "status": null,
+   "funding": "NERC and the six Regional Entities are funded by assessments on load-serving entities (16 U.S.C. 824o(c)(2)(B)); FERC approves the budgets. FERC recovers 100% of its own appropriation from annual charges and filing fees on the industry it regulates.",
+   "staffing": "NERC and Regional Entity staff (private nonprofits; e.g., WECC is a 501(c)(4)). Regional boards include industry-sector representatives (e.g., ReliabilityFirst's six industry sectors).",
+   "overrule": "FERC approves or remands standards and penalties (R31). FERC commissioners have the same for-cause wording the Court struck for the FTC; law firms read Slaughter as making them very likely removable at will.",
+   "sources": [
+    {
+     "label": "FERC order on NERC budget citing 824o(c)(2)(B)",
+     "url": "https://www.wecc.org/sites/default/files/documents/finance/2024/2024%20BPB%20FERC%20Order%2020231019.pdf",
+     "primary": true
+    },
+    {
+     "label": "Texas RE 2026 budget (LSE assessments)",
+     "url": "https://nerc.com/gov/bot/FINANCE/RegionalEntityBPandB/Texas RE Draft 2026 Business Plan and Budget.pdf",
+     "primary": true
+    },
+    {
+     "label": "WECC 2026 budget (501(c)(4), LSE-funded)",
+     "url": "https://www.nerc.com/gov/bot/FINANCE/RegionalEntityBPandB/WECC Final 2026 Business Plan and Budget.pdf",
+     "primary": true
+    },
+    {
+     "label": "FERC annual charges (100% recovery)",
+     "url": "https://ferc.gov/hydropower/annual-charges",
+     "primary": true
+    },
+    {
+     "label": "Vinson & Elkins on Slaughter and FERC",
+     "url": "https://www.velaw.com/insights/supreme-court-curbs-agency-head-removal-protections-in-trump-v-slaughter-and-trump-v-cook-implications-for-the-federal-energy-regulatory-commission/",
+     "primary": false
+    }
+   ],
+   "note": "Who sits on NERC's own board not checked."
+  },
+  "supply": {
+   "status": null,
+   "funding": "CA Board of Pharmacy (which licenses and inspects wholesalers) is entirely self-funded, mainly from license fees; no state general fund money.",
+   "staffing": "Board inspectors are registered pharmacists. 7 of the 13 board members are licensed pharmacists; the board appoints its own executive officer.",
+   "overrule": "Boards controlled by active market participants lose antitrust immunity unless actively supervised by the state (NC Dental v. FTC, 2015). Federal FDA wholesaler standard still not final (R31).",
+   "sources": [
+    {
+     "label": "CA Board of Pharmacy, About the Board",
+     "url": "https://pharmacy.ca.gov/about/about_the_board.shtml",
+     "primary": true
+    },
+    {
+     "label": "Bus. & Prof. Code §4001",
+     "url": "https://california.public.law/codes/business_and_professions_code_section_4001",
+     "primary": true
+    },
+    {
+     "label": "NC Dental v. FTC, 574 U.S. 494",
+     "url": "https://www.law.cornell.edu/supremecourt/text/13-534",
+     "primary": true
+    }
+   ],
+   "note": "DEA (controlled substances) not covered; the map's supply column is DSCSA/wholesalers."
+  }
+ },
+ "ai": {
+  "status": null,
+  "text": "No inspector exists to fund or staff (R02 AI: voluntary only). CAISI testing is by invitation. Nothing to score on funding; overrule question doesn't arise.",
+  "sources": []
+ }
+}
